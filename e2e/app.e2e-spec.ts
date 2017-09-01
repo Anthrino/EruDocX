@@ -1,0 +1,14 @@
+import { EruDocXPage } from './app.po';
+
+describe('eru-doc-x App', () => {
+  let page: EruDocXPage;
+
+  beforeEach(() => {
+    page = new EruDocXPage();
+  });
+
+  it('should display welcome message', () => {
+    page.navigateTo();
+    expect(page.getParagraphText()).toEqual('Welcome to app!!');
+  });
+});
