@@ -1,24 +1,49 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Headers, Http, RequestMethod, RequestOptionsArgs, ResponseContentType} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class QAService {
-  private _erudite_server = 'localhost:2200';
-  private _params: URLSearchParams = new URLSearchParams();
+  private _erudite_server = 'http://127.0.0.1:5000/';
+  public query: string;
+  private componentMethodCallSource = new Subject<any>();
+  // headers: Headers;
+  // options: RequestOptionsArgs;
+
+  // Observable string streams
+  componentMethodCalled$ = this.componentMethodCallSource.asObservable();
 
   constructor(private _http: Http) {
   }
 
-  getQueryAnswer(query: string): Promise<string> {
-    this._params.set('query', query);
-    return this._http.get(this._erudite_server, {search: this._params}).toPromise()
-      .then(response => response.json().data as string).catch(this.handleError);
+  // Service message commands
+  callComponentMethod(query) {
+    this.query = query;
+    this.componentMethodCallSource.next();
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  getQueryAnswer(query: string): Observable<string> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const options: RequestOptionsArgs = {
+      method: RequestMethod.Post,
+      headers: headers,
+    };
+    return this._http.post(this._erudite_server, JSON.stringify({'query': query}), JSON.stringify(options))
+      .map(response => response.text() as string).catch(this.handleError);
+
+    // return this._http.get(this._erudite_server, {search: this._params}).toPromise()
+    //   .then(response => response.json().data as string).catch(this.handleError);
+  }
+
+  private handleError(error: any) {
+    console.error('Error occurred', error);
+    return Observable.throw(error.json().error || 'Server Error');
   }
 }
 

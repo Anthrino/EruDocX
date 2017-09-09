@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {ResponseComponent} from '../response/response.component'
+import {QAService} from '../qa.service';
 
 @Component({
   selector: 'app-docx-search',
@@ -7,10 +9,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DocxSearchComponent implements OnInit {
   title: string;
-  constructor() {
+  query: string;
+  searchProvider: ResponseComponent;
+
+  constructor(private _qaService: QAService) {
     this.title = 'Article Search';
   }
+
   ngOnInit() {
+  }
+
+  querySubmit(event: Event): void {
+    event.preventDefault();
+    console.log(this.query);
+    this._qaService.callComponentMethod(this.query);
   }
 
 }

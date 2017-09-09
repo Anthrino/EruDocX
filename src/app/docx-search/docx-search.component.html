@@ -1,12 +1,13 @@
 <md-card id="search-box">
-    <!--Choose text document:-->
-    <!--<button md-raised-button id="upload_button">Upload-->
-       <!--&lt;!&ndash;<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">&ndash;&gt;-->
-    <!--</button>-->
-  <form class="search-form">
-    <md-icon id="search-icon" mdPrefix>search</md-icon>
+  <!--Choose text document:-->
+  <!--<button md-raised-button id="upload_button">Upload-->
+  <!--&lt;!&ndash;<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">&ndash;&gt;-->
+  <!--</button>-->
+  <form class="search-form" #searchForm = "ngForm" (ngSubmit)="querySubmit($event);">
+    <md-icon id="search-icon" mdPrefix></md-icon>
     <md-form-field id="search-field">
-      <input mdInput id="query-field" type="search" placeholder="Your question..">
+      <input mdInput [(ngModel)]="query" name="query" id="query-field" type="text" placeholder="Your question.." ngModel>
     </md-form-field>
+    <button type="submit" id="search-button" md-raised-button>Search</button>
   </form>
 </md-card>
