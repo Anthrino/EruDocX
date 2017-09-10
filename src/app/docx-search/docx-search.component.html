@@ -3,11 +3,13 @@
   <!--<button md-raised-button id="upload_button">Upload-->
   <!--&lt;!&ndash;<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">&ndash;&gt;-->
   <!--</button>-->
-  <form class="search-form" #searchForm = "ngForm" (ngSubmit)="querySubmit($event);">
+  <form class="search-form" #searchForm = "ngForm">
     <md-icon id="search-icon" mdPrefix></md-icon>
     <md-form-field id="search-field">
       <input mdInput [(ngModel)]="query" name="query" id="query-field" type="text" placeholder="Your question.." ngModel>
     </md-form-field>
-    <button type="submit" id="search-button" md-raised-button>Search</button>
+    <br>
+    <button type="submit" id="ir-search-button" (click)="querySubmit('InfoRet', $event)" md-raised-button >InfoRet Search</button>
+    <button type="submit" id="babi-search-button" (click)="querySubmit('bAbI', $event)" md-raised-button>bAbI Search</button>
   </form>
 </md-card>

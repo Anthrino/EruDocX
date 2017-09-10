@@ -6,7 +6,7 @@ import json
 
 app = Flask(__name__)
 
-@app.route('/',methods=['POST'])
+@app.route('/bAbI',methods=['POST'])
 def get_passage():
 	query = request.get_json(force=True)['query']
 	print(query)
