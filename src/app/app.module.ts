@@ -17,12 +17,14 @@ import {
   MdButtonModule,
   MdIconModule,
   MdToolbarModule } from '@angular/material';
+import { VisualizeNnComponent } from './visualize-nn/visualize-nn.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DocxSearchComponent,
-    ResponseComponent
+    ResponseComponent,
+    VisualizeNnComponent
   ],
   imports: [
     BrowserModule,
