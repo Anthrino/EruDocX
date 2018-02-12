@@ -18,13 +18,15 @@ import {
   MdIconModule,
   MdToolbarModule } from '@angular/material';
 import { VisualizeNnComponent } from './visualize-nn/visualize-nn.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DocxSearchComponent,
     ResponseComponent,
-    VisualizeNnComponent
+    VisualizeNnComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,

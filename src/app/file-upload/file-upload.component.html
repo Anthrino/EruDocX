@@ -6,12 +6,10 @@
   <form class="search-form" #searchForm = "ngForm">
     <md-icon id="search-icon" mdPrefix></md-icon>
     <md-form-field id="search-field">
-      <input mdInput [(ngModel)]="query" name="query" id="query-field" type="text" placeholder="Your question.." ngModel>
+      <input mdInput [(ngModel)]="query" name="query" id="query-field" type="file" placeholder="Context file" ngModel>
     </md-form-field>
     <br>
-    <!--<button type="submit" id="ir-search-button" (click)="querySubmit('InfoRet', $event)" md-raised-button >Search</button>-->
+    <button type="submit" id="submit-button" (click)="fileUpload('InfoRet', $event)" md-raised-button >Submit</button>
     <!--<button type="submit" id="babi-search-button" (click)="querySubmit('bAbI', $event)" md-raised-button>bAbI Search</button>-->
-    <button type="submit" id="search-button" (click)="querySubmit('InfoRet', $event)" md-raised-button >Search</button>
-
   </form>
 </md-card>

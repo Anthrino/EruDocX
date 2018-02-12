@@ -1,0 +1,27 @@
+#search-box {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 70%;
+}
+
+#ir-search-button {
+  margin-right: 20px;
+  background-color: #21b4a6;
+  color: honeydew;
+}
+
+.search-form {
+  width: 100%;
+  height: auto;
+}
+
+#search-field {
+  width: 80%;
+}
+
+#upload_button {
+  background-color: #21b4a6;
+  color: honeydew;
+}
+
