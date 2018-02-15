@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FileService} from "../file.service";
+import {FileService} from '../file.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -8,13 +8,12 @@ import {FileService} from "../file.service";
 })
 export class FileUploadComponent implements OnInit {
 
-  constructor(private _fileService: FileService) { }
+  // constructor(private _fileService: FileService) { }
 
   ngOnInit() {
   }
 
   fileUpload(): void {
-    console.log(dataset);
-    this._fileService.callComponentMethod(dataset, this.query);
+    // this._fileService.callComponentMethod(this.query);
   }
 }

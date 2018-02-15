@@ -3,13 +3,12 @@
   <!--<button md-raised-button id="upload_button">Upload-->
   <!--&lt;!&ndash;<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">&ndash;&gt;-->
   <!--</button>-->
-  <form class="search-form" #searchForm = "ngForm">
-    <md-icon id="search-icon" mdPrefix></md-icon>
-    <md-form-field id="search-field">
-      <input mdInput [(ngModel)]="query" name="query" id="query-field" type="file" placeholder="Context file" ngModel>
-    </md-form-field>
-    <br>
-    <button type="submit" id="submit-button" (click)="fileUpload('InfoRet', $event)" md-raised-button >Submit</button>
-    <!--<button type="submit" id="babi-search-button" (click)="querySubmit('bAbI', $event)" md-raised-button>bAbI Search</button>-->
-  </form>
+  <mat-icon-button	 id="uploadButton" class="md-fab md-mini">
+    <md-icon class="material-icons">attach_file</md-icon>
+  </mat-icon-button	>
+  <md-input-container md-no-float>
+    <input id="textInput" ng-model="fileName" type="text" placeholder="No file chosen" ng-readonly="true">
+  </md-input-container>
+  <button type="submit" id="submit-button" (click)="fileUpload($event)" md-raised-button>Submit</button>
+  <!--<button type="submit" id="babi-search-button" (click)="querySubmit('bAbI', $event)" md-raised-button>bAbI Search</button>-->
 </md-card>
