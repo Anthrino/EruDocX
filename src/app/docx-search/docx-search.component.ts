@@ -19,10 +19,10 @@ export class DocxSearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  querySubmit(dataset: string, event: Event): void {
+  querySubmit(event: Event): void {
     event.preventDefault();
-    console.log(dataset);
-    this._qaService.callComponentMethod(dataset, this.query);
+    // console.log(dataset);
+    this._qaService.callComponentMethod(this.query);
   }
 
 }

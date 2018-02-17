@@ -1,6 +1,6 @@
 <mat-card id="file-box">
   <label for="fileInput" id="uploadButton" class="mat-button mat-raised-button">
-    <input id="fileInput" type="file" (change)="fileChange($event)" accept=".txt,.pdf,.doc,.docx">
+    <input id="fileInput" [(ngModel)]="file" name="file" type="file" (change)="fileChange($event)" accept=".txt,.pdf,.doc,.docx">
     <br>
     <mat-icon id="attachIcon" class="material-icons">attach_file</mat-icon>
     <br>
@@ -9,8 +9,7 @@
   <!--<textarea id="fileName" ng-model="fileName" placeholder="Choose text document" readonly="true">{{fileselectmessage}}</textarea>-->
   <div id="status-window">
     <mat-placeholder>
-      <!--{{ response_text }}-->
-      No document selected
+      {{ response_text }}
     </mat-placeholder>
   </div>
   <br>

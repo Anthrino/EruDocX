@@ -11,7 +11,7 @@ import {Subject} from 'rxjs/Subject';
 export class QAService {
   private _erudite_server = 'http://127.0.0.1:5000/';
   public query: string;
-  public dataset: string;
+  // public dataset: string;
   private componentMethodCallSource = new Subject<any>();
   // headers: Headers;
   // options: RequestOptionsArgs;
@@ -23,9 +23,9 @@ export class QAService {
   }
 
   // Service message commands
-  callComponentMethod(dataset, query) {
+  callComponentMethod(query) {
     this.query = query;
-    this.dataset = dataset;
+    // this.dataset = dataset;
     this.componentMethodCallSource.next();
   }
 
@@ -37,7 +37,7 @@ export class QAService {
       method: RequestMethod.Post,
       headers: headers,
     };
-    return this._http.post(this._erudite_server + this.dataset, JSON.stringify({'query': query}), JSON.stringify(options))
+    return this._http.post(this._erudite_server, JSON.stringify({'query': query}), JSON.stringify(options))
       .map(response => response.text() as string).catch(this.handleError);
 
     // return this._http.get(this._erudite_server, {search: this._params}).toPromise()

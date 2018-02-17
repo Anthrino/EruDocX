@@ -9,6 +9,7 @@ import {DocxSearchComponent} from './docx-search/docx-search.component';
 
 import {ResponseComponent} from './response/response.component';
 import {QAService} from './qa.service';
+import {FileService} from './file-upload/file.service';
 
 import {
   MatCardModule,
@@ -48,7 +49,7 @@ import {FileUploadComponent} from './file-upload/file-upload.component';
     MatIconModule,
     MatToolbarModule
   ],
-  providers: [QAService],
+  providers: [QAService, FileService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
