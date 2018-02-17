@@ -1,23 +1,46 @@
-#search-box {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  width: 70%;
+#file-box {
+  height: 80%;
+  width: 75%;
+  margin-top: 5%;
+  margin-left: 15%;
+  align-items: center;
 }
 
-#ir-search-button {
-  margin-right: 20px;
+#uploadButton {
+  margin: auto;
+  margin-top: 10%;
+  width: 100%;
   background-color: #21b4a6;
   color: honeydew;
 }
 
-.search-form {
-  width: 100%;
-  height: auto;
+#submit-button {
+  margin: auto;
+  margin-top: 30%;
+  background-color: #21b4a6;
+  color: honeydew;
 }
 
-#search-field {
-  width: 80%;
+#status-window {
+  margin: auto;
+  margin-top: 30%;
+  font-size: large;
+  font-family: Calibri;
+}
+
+#fileInput {
+  opacity: 0;
+  position: static;
+}
+
+#attachIcon {
+  margin: auto;
+}
+
+#fileName {
+  width: 50%;
+  margin: auto;
+  margin-top: 50%;
 }
 
 #upload_button {

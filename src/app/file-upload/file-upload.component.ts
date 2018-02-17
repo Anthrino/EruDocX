@@ -1,5 +1,6 @@
+// Λnדhгιnכ™
 import { Component, OnInit } from '@angular/core';
-import {FileService} from '../file.service';
+import {FileService} from './file.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -7,7 +8,7 @@ import {FileService} from '../file.service';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent implements OnInit {
-
+  response_text: string;
   // constructor(private _fileService: FileService) { }
 
   ngOnInit() {

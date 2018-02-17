@@ -1,3 +1,4 @@
+// Λnדhгιnכ™
 import {Injectable} from '@angular/core';
 import {Headers, Http, RequestMethod, RequestOptionsArgs, ResponseContentType} from '@angular/http';
 import 'rxjs/add/operator/toPromise';

@@ -1,5 +1,17 @@
-#navbar{
-  padding: 5px;
+#navbar {
+  padding-top: 15px;
 }
-#logo{
+
+#logo {
+  margin: auto
 }
+
+.comp-card {
+  vertical-align: middle;
+  width: 90%;
+  height: 100%;
+}
+
+/*mat-grid-tile {*/
+/*background: lightblue;*/
+/*}*/

@@ -1,3 +1,4 @@
+// Λnדhгιnכ™
 import {Injectable} from '@angular/core';
 import {Http, RequestOptionsArgs} from '@angular/http';
 import {Subject} from 'rxjs/Subject';
@@ -12,16 +13,18 @@ export class FileService {
   // options: RequestOptionsArgs;
 
   // Observable string streams
-  componentMethodCalled$ = this.componentMethodCallSource.asObservable();
+  // componentMethodCalled$ = this.componentMethodCallSource.asObservable();
 
   constructor(private _http: Http) {
   }
 
   // Service message commands
-  callComponentMethod(file) {
-    // this.filename = query;
-    this.componentMethodCallSource.next();
-  }
+  // callComponentMethod(file) {
+  //   // this.filename = query;
+  //   this.componentMethodCallSource.next();
+  // }
+
+  // uploadFile(file: any, fileName: String){}
   //
   // getQueryAnswer(query: string): Observable<string> {
   //   const headers = new Headers();
@@ -38,9 +41,9 @@ export class FileService {
     //   .then(response => response.json().data as string).catch(this.handleError);
   // }
 
-  private handleError(error: any) {
-    console.error('Error occurred', error);
-    return Observable.throw(error.json().error || 'Server Error');
-  }
+  // private handleError(error: any) {
+  //   console.error('Error occurred', error);
+  //   return Observable.throw(error.json().error || 'Server Error');
+  // }
 
 }

@@ -1,14 +1,18 @@
-<md-card id="search-box">
-  <!--Choose text document:-->
-  <!--<button md-raised-button id="upload_button">Upload-->
-  <!--&lt;!&ndash;<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">&ndash;&gt;-->
-  <!--</button>-->
-  <mat-icon-button	 id="uploadButton" class="md-fab md-mini">
-    <md-icon class="material-icons">attach_file</md-icon>
-  </mat-icon-button	>
-  <md-input-container md-no-float>
-    <input id="textInput" ng-model="fileName" type="text" placeholder="No file chosen" ng-readonly="true">
-  </md-input-container>
-  <button type="submit" id="submit-button" (click)="fileUpload($event)" md-raised-button>Submit</button>
-  <!--<button type="submit" id="babi-search-button" (click)="querySubmit('bAbI', $event)" md-raised-button>bAbI Search</button>-->
-</md-card>
+<mat-card id="file-box">
+  <label for="fileInput" id="uploadButton" class="mat-button mat-raised-button">
+    <input id="fileInput" type="file" (change)="fileChange($event)" accept=".txt,.pdf,.doc,.docx">
+    <br>
+    <mat-icon id="attachIcon" class="material-icons">attach_file</mat-icon>
+    <br>
+    Click to upload
+  </label>
+  <!--<textarea id="fileName" ng-model="fileName" placeholder="Choose text document" readonly="true">{{fileselectmessage}}</textarea>-->
+  <div id="status-window">
+    <mat-placeholder>
+      <!--{{ response_text }}-->
+      No document selected
+    </mat-placeholder>
+  </div>
+  <br>
+  <button type="submit" id="submit-button" (click)="fileUpload($event)" mat-raised-button>Submit</button>
+</mat-card>
