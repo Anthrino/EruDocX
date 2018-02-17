@@ -21,11 +21,13 @@ export class FileUploadComponent implements OnInit {
   }
 
   fileChange(fileInput: Event): void {
-    this.fileName = (<HTMLInputElement>fileInput.target).files[0].name;
+    this.response_text = 'No document selected';
+    this.file = (<HTMLInputElement>fileInput.target).files[0];
+    this.fileName = this.file.name;
     this.response_text = 'Selected Doc : ' + this.fileName;
   }
 
   fileUpload(): void {
-    this._fileService.uploadFile(this.file).subscribe(response => this.response_text = response, error => this.response_text = <any>error);
+    this._fileService.uploadFile(this.file);
   }
 }
