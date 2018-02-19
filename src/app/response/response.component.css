@@ -8,9 +8,15 @@
   width: 80%;
 }
 
+#status-spinner{
+  float: right;
+  margin-top: -7%;
+  margin-right: 10%;
+}
+
 #response-window {
   margin-left: 5%;
-  margin-top: 40px;
+  margin-top: 10%;
   margin-bottom: auto;
   font-size: large;
   font-family: Calibri;

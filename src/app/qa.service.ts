@@ -12,6 +12,7 @@ export class QAService {
   private _erudite_server = 'http://127.0.0.1:5000/';
   public query: string;
   // public dataset: string;
+
   private componentMethodCallSource = new Subject<any>();
   // headers: Headers;
   // options: RequestOptionsArgs;

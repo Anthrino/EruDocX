@@ -13,11 +13,9 @@ export class FileService {
   AWSService: any = this.window.AWS;
   public filename: string;
   private componentMethodCallSource = new Subject<any>();
-  // headers: Headers;
-  // options: RequestOptionsArgs;
 
   // Observable string streams
-  // componentMethodCalled$ = this.componentMethodCallSource.asObservable();
+  componentMethodCalled$ = this.componentMethodCallSource.asObservable();
 
   constructor(private _http: Http) {
     this.AWSService.config.accessKeyId = '<accessKeyId>';
@@ -26,17 +24,17 @@ export class FileService {
   }
 
   // Service message commands
-  // callComponentMethod(file) {
-  //   // this.filename = query;
-  //   this.componentMethodCallSource.next();
-  // }
+  callComponentMethod(file) {
+    // this.filename = query;
+    this.componentMethodCallSource.next();
+  }
 
-  uploadFile(file: File): void {
+  uploadFile(file: File): Observable<string> {
     const S3Bucket = new this.AWSService.S3({params: {Bucket: 'eruditex-file-server'}});
     const params = {Key: file.name, Body: file};
     return S3Bucket.upload(params, function (err, data) {
       console.log(err, data);
-    })
+    }).map(response => response.text() as string).catch(this.handleError);
 
   }
 
