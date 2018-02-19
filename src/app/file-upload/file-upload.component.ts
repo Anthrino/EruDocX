@@ -38,6 +38,5 @@ export class FileUploadComponent implements OnInit {
       this.response_text = this.response_text.replace('Selected', 'Uploaded');
     } else {
       alert('Please select a file for upload')
-    }
-  }
+    }  }
 }
