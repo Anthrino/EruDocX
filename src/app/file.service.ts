@@ -11,7 +11,8 @@ export class FileService {
   private _erudite_aws_server = ' http://s3-ap-south-1.amazonaws.com/eruditex-file-server';
   window: any = window;
   AWSService: any = this.window.AWS;
-  public filename: string;
+  private filename: string;
+  private file: File;
   private componentMethodCallSource = new Subject<any>();
 
   // Observable string streams
@@ -24,23 +25,23 @@ export class FileService {
   }
 
   // Service message commands
-  callComponentMethod(file) {
-    // this.filename = query;
+  callComponentMethod(file: File, filename: string) {
+    this.file = file;
+    this.filename = filename;
+    this.uploadFile();
     this.componentMethodCallSource.next();
   }
 
-  uploadFile(file: File): Observable<string> {
+  uploadFile(): any {
     const S3Bucket = new this.AWSService.S3({params: {Bucket: 'eruditex-file-server'}});
-    const params = {Key: file.name, Body: file};
+    const params = {Key: this.filename, Body: this.file};
     return S3Bucket.upload(params, function (err, data) {
       console.log(err, data);
-    }).map(response => response.text() as string).catch(this.handleError);
+    })
 
   }
 
-  private handleError(error: any) {
-    console.error('Error occurred', error);
-    return Observable.throw(error.json().error || 'Server Error');
-  }
+  // fileStatus(): Observable<string> {
+  // }
 
 }

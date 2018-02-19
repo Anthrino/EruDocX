@@ -32,8 +32,8 @@ export class ResponseComponent implements OnInit {
   fileStatus(): void {
     this.response_text = 'Document is being processed..';
     this.spinner = true;
-    this._fileService.getQueryAnswer(this._qaService.query)
-      .subscribe(response => this.response_text = response, error => this.response_text = <any>error);
+    // this.response_text = this._fileService.fileStatus()
+    //   .map(response => this.response_text = response, error => this.response_text = <any>error);
   }
 
   retrieveAnswer(): void {

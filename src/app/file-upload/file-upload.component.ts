@@ -24,10 +24,20 @@ export class FileUploadComponent implements OnInit {
     this.response_text = 'No document selected';
     this.file = (<HTMLInputElement>fileInput.target).files[0];
     this.fileName = this.file.name;
+    const len = this.fileName.length;
     this.response_text = 'Selected Doc : ' + this.fileName;
+    if (len > 25) {
+      this.response_text = 'Selected Doc : ' + this.fileName.slice(0, 15) + '..' + this.fileName.slice(-10, len);
+    }
+
   }
 
   fileUpload(): void {
-    this._fileService.uploadFile(this.file);
+    if (this.file) {
+      this._fileService.callComponentMethod(this.file, this.fileName);
+      this.response_text = this.response_text.replace('Selected', 'Uploaded');
+    } else {
+      alert('Please select a file for upload')
+    }
   }
 }
