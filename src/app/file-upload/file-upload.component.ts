@@ -1,6 +1,6 @@
 // Λnדhгιnכ™
 import {Component, OnInit} from '@angular/core';
-import {FileService} from './file.service';
+import {FileService} from '../file.service';
 
 @Component({
   selector: 'app-file-upload',

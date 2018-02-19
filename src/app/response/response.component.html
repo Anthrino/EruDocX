@@ -2,12 +2,15 @@
   <mat-card-title>Response Window</mat-card-title>
   <form>
     <div id="response-window">
-          <mat-placeholder>
-            {{ response_text }}
-          </mat-placeholder>
+      <mat-placeholder>
+        {{ response_text }}
+      </mat-placeholder>
     </div>
+    <mat-spinner *ngIf="spinner" id="status-spinner" [diameter]="75" [strokeWidth]="5" color="accent" >
+    </mat-spinner>
+
     <!--<mat-form-field id="search-field">-->
-      <!--<!- -<input matInput id="convo-field" type="text" placeholder="Continue conversation..">&ndash;&gt;-->
+    <!--<!- -<input matInput id="convo-field" type="text" placeholder="Continue conversation..">&ndash;&gt;-->
     <!--</mat-form-field>-->
   </form>
 </mat-card>
