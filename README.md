@@ -1,6 +1,9 @@
 # EruDocX
 
-**_A SP Web Application based on Angular2 Framework acting as the FrontEnd Interface for a Comprehension-based QA System (EruditeX)_**
+**_A SP Web Application based on Angular2 Framework acting as the FrontEnd Interface for a Comprehension-based QA System [EruditeX](https://github.com/meshde/EruditeX)_**
+
+### Website Link: [EruDocX](http://erudocx.s3-website.ap-south-1.amazonaws.com)
+-----
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0.
 
