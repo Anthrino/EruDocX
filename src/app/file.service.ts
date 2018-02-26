@@ -19,8 +19,7 @@ export class FileService {
   componentMethodCalled$ = this.componentMethodCallSource.asObservable();
 
   constructor(private _http: Http) {
-    this.AWSService.config.accessKeyId = 'AKIAJZRKRHTJYHGNFLCQ';
-    this.AWSService.config.secretAccessKey = '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';
+    // TODO: find secure way to access S3 instead of exposing IMA keys publicly
     this.AWSService.config.region = 'ap-south-1';
   }
 
