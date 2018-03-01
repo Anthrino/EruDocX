@@ -32,11 +32,19 @@ export class FileService {
   }
 
   uploadFile(): any {
-    const S3Bucket = new this.AWSService.S3({params: {Bucket: 'eruditex-file-server'}});
-    const params = {Key: this.filename, Body: this.file};
-    return S3Bucket.upload(params, function (err, data) {
-      console.log(err, data);
-    })
+    // const S3Bucket = new this.AWSService.S3({params: {Bucket: 'eruditex-file-server'}});
+    // const params = {Key: this.filename, Body: this.file};
+    // S3Bucket.upload(params, function (err, data) {
+    //   console.log(err, data);
+    // });
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const options: RequestOptionsArgs = {
+      method: RequestMethod.Post,
+      headers: headers,
+    };
+    this._http.post(this._erudite_server + 'filed', JSON.stringify({'filename': this.filename}), JSON.stringify(options))
 
   }
 

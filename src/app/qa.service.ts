@@ -9,7 +9,7 @@ import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class QAService {
-  private _erudite_server = 'http://127.0.0.1:5000/';
+  private _erudite_server = 'http://127.0.0.1:5000/query';
   public query: string;
   // public dataset: string;
 
