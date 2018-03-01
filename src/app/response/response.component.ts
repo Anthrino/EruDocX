@@ -38,6 +38,7 @@ export class ResponseComponent implements OnInit {
 
   retrieveAnswer(): void {
     console.log(this._qaService.query);
+    this.spinner = false;
     this._qaService.getQueryAnswer(this._qaService.query)
       .subscribe(response => this.response_text = response, error => this.response_text = <any>error);
   }
