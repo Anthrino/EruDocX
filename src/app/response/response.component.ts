@@ -30,16 +30,32 @@ export class ResponseComponent implements OnInit {
   }
 
   fileStatus(): void {
-    this.response_text = 'Document is being processed..';
+    this.response_text = 'Document is being uploaded..';
     this.spinner = true;
-    // this.response_text = this._fileService.fileStatus()
-    //   .map(response => this.response_text = response, error => this.response_text = <any>error);
+    this.response_text = this._fileService.uploadFile()
+      .subscribe(response => {
+          this.response_text = response;
+          this.spinner = false;
+        }
+        , error => {
+          this.response_text = <any>error;
+          this.spinner = false;
+        });
+    this.spinner = false;
   }
 
   retrieveAnswer(): void {
     console.log(this._qaService.query);
-    this.spinner = false;
+    this.response_text = 'Query is being processed..';
+    this.spinner = true;
     this._qaService.getQueryAnswer(this._qaService.query)
-      .subscribe(response => this.response_text = response, error => this.response_text = <any>error);
+      .subscribe(response => {
+          this.response_text = response;
+          this.spinner = false;
+        }
+        , error => {
+          this.response_text = <any>error;
+          this.spinner = false;
+        });
   }
 }

@@ -39,16 +39,19 @@ export class FileService {
     // });
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+
 
     const options: RequestOptionsArgs = {
       method: RequestMethod.Post,
       headers: headers,
     };
-    this._http.post(this._erudite_server + 'filed', JSON.stringify({'filename': this.filename}), JSON.stringify(options))
-
+    return this._http.post(this._erudite_server + 'filed', JSON.stringify({'filename': this.filename}), JSON.stringify(options))
+      .map(response => response.text() as string, status => false).catch(this.handleError);
   }
 
-  // fileStatus(): Observable<string> {
-  // }
-
+  private handleError(error: any) {
+    console.error('Error occurred', error);
+    return Observable.throw(error.json().error || 'Server Error');
+  }
 }
