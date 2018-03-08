@@ -41,12 +41,19 @@ export class FileService {
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
 
-
     const options: RequestOptionsArgs = {
       method: RequestMethod.Post,
       headers: headers,
     };
-    return this._http.post(this._erudite_server + 'filed', JSON.stringify({'filename': this.filename}), JSON.stringify(options))
+
+    const formData = new FormData();
+    formData.append('file', this.file);
+    formData.append('filename', this.filename);
+
+    // return this._http.post(this._erudite_server + 'filed', JSON.stringify({'filename': this.filename}), JSON.stringify(options))
+    //   .map(response => response.text() as string, status => false).catch(this.handleError);
+
+    return this._http.post(this._erudite_server + 'filed', formData, JSON.stringify(options))
       .map(response => response.text() as string, status => false).catch(this.handleError);
   }
 
