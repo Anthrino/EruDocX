@@ -39,7 +39,7 @@ export class QAService {
       headers: headers,
     };
     return this._http.post(this._erudite_server, JSON.stringify({'query': query}), JSON.stringify(options))
-      .map(response => response.text() as string).catch(this.handleError);
+      .map(response => response.json().answers as any).catch(this.handleError);
 
     // return this._http.get(this._erudite_server, {search: this._params}).toPromise()
     //   .then(response => response.json().data as string).catch(this.handleError);

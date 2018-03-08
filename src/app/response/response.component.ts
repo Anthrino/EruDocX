@@ -9,6 +9,7 @@ import {FileService} from '../file.service';
 })
 export class ResponseComponent implements OnInit {
   response_text: string;
+  answers: any;
   spinner: boolean;
 
   constructor(private _qaService: QAService, private _fileService: FileService) {
@@ -50,7 +51,12 @@ export class ResponseComponent implements OnInit {
     this.spinner = true;
     this._qaService.getQueryAnswer(this._qaService.query)
       .subscribe(response => {
-          this.response_text = response;
+          document.getElementById('response-window').style.marginTop = '3%';
+          this.response_text = 'Answers:';
+          this.answers = response;
+          // data.forEach(ans => {
+          //   this.response_text += (ans.word + ' : ' + ans.score + '\n');
+          // });
           this.spinner = false;
         }
         , error => {
