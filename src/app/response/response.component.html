@@ -5,8 +5,13 @@
       <mat-placeholder>
         {{ response_text }}
       </mat-placeholder>
+      <ul>
+        <li *ngFor="let ans of answers">
+          {{ ans.word +' : '+ ans.score}}
+        </li>
+      </ul>
     </div>
-    <mat-spinner *ngIf="spinner" id="status-spinner" [diameter]="75" [strokeWidth]="5" color="accent" >
+    <mat-spinner *ngIf="spinner" id="status-spinner" [diameter]="75" [strokeWidth]="5" color="accent">
     </mat-spinner>
 
     <!--<mat-form-field id="search-field">-->
