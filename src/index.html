@@ -7,11 +7,47 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .loader {
+      display: none;
+      transition: opacity .8s ease-in-out;
+      margin: auto;
+      margin-top: 10%;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #21b4a6;
+      border-bottom: 16px solid #21b4a6;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 1.5s linear infinite;
+    }
+
+    app-root:empty + .loader {
+      display: flex;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 <body>
-<app-root>
-  <mat-spinner id="status-spinner" [diameter]="75" [strokeWidth]="5" color="accent">
-  </mat-spinner>
-</app-root>
+<app-root></app-root>
+<div class="loader"></div>
 </body>
 </html>
