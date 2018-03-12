@@ -3,12 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>EruDocX</title>
-  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="shortcut icon" href="favicon.ico"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<app-root>Loading..</app-root>
+<app-root>
+  <mat-spinner id="status-spinner" [diameter]="75" [strokeWidth]="5" color="accent">
+  </mat-spinner>
+</app-root>
 </body>
 </html>
