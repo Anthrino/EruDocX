@@ -57,6 +57,21 @@ export class FileService {
       .map(response => response.text() as string, status => false).catch(this.handleError);
   }
 
+  getStatus(): Observable<string> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const options: RequestOptionsArgs = {
+      method: RequestMethod.Post,
+      headers: headers,
+    };
+    alert('here');
+
+    return this._http.post(this._erudite_server + 'status', JSON.stringify({'status': 'status'}), JSON.stringify(options))
+      .map(response => response.json().status as string).catch(this.handleError);
+
+  }
+
   private handleError(error: any) {
     console.error('Error occurred', error);
     return Observable.throw(error.json().error || 'Server Error');

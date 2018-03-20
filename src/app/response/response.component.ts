@@ -20,13 +20,12 @@ export class ResponseComponent implements OnInit {
         this.retrieveAnswer();
       }
     );
-    // this._qaService.componentMethodCalled$.subscribe(
-    //   () => {
-    //     setTimeout(function () {
-    //       this.updateStatus();
-    //     }, 1000);
-    //   }
-    // );
+    this._qaService.componentMethodCalled$.subscribe(
+      () => {
+        this.status = true;
+        this.updateStatus();
+      }
+    );
     this._fileService.componentMethodCalled$.subscribe(
       () => {
         this.answers = null;
@@ -56,23 +55,24 @@ export class ResponseComponent implements OnInit {
   }
 
   updateStatus(): void {
-    alert('here');
-    // while (this.status) {
-    //   this._qaService.getStatus()
-    //     .subscribe(response => {
-    //         this.response_text = response;
-    //         alert(response);
-    //         if (response === 'false') {
-    //           this.status = false;
-    //         }
-    //       }
-    //       , error => {
-    //         alert(error);
-    //         this.response_text = <any>error;
-    //         this.spinner = false;
-    //         this.status = false;
-    //       });
-    // }
+    setInterval(function () {
+      if (this.status) {
+        this._fileService.getStatus()
+          .subscribe(response => {
+            alert(response);
+            if (response === 'false') {
+              this.status = false;
+            } else {
+              this.response_text = response;
+            }
+          }, error => {
+            alert(error);
+            this.response_text = <any>error;
+            this.spinner = false;
+            this.status = false;
+          });
+      }
+    }, 500);
   }
 
   retrieveAnswer(): void {
@@ -81,18 +81,17 @@ export class ResponseComponent implements OnInit {
     this.spinner = true;
     this._qaService.getQueryAnswer(this._qaService.query)
       .subscribe(response => {
-          document.getElementById('response-window').style.marginTop = '3%';
-          this.response_text = 'Answers:';
-          this.answers = response;
-          // data.forEach(ans => {
-          //   this.response_text += (ans.word + ' : ' + ans.score + '\n');
-          // });
-          this.spinner = false;
-        }
-        , error => {
-          this.response_text = <any>error;
-          this.spinner = false;
-        });
+        document.getElementById('response-window').style.marginTop = '3%';
+        this.response_text = 'Answers:';
+        this.answers = response;
+        // data.forEach(ans => {
+        //   this.response_text += (ans.word + ' : ' + ans.score + '\n');
+        // });
+        this.spinner = false;
+      }, error => {
+        this.response_text = <any>error;
+        this.spinner = false;
+      });
     this.status = false;
   }
 }
