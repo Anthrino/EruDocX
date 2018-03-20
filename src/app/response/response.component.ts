@@ -12,7 +12,6 @@ export class ResponseComponent implements OnInit {
   subs: any;
   answers: any;
   spinner: boolean;
-  status: boolean;
 
   constructor(private _qaService: QAService, private _fileService: FileService) {
     this.response_text = 'This is where the response will appear..';
@@ -23,7 +22,6 @@ export class ResponseComponent implements OnInit {
     );
     this._qaService.componentMethodCalled$.subscribe(
       () => {
-        this.status = true;
         this.updateStatus();
       }
     );
@@ -53,26 +51,18 @@ export class ResponseComponent implements OnInit {
           this.spinner = false;
         });
     this.spinner = false;
-    this.status = true;
   }
 
   updateStatus(): void {
-    if (this.status) {
-      this.subs = this._fileService.getStatus()
-        .subscribe(response => {
-          if (response === 'false') {
-            this.status = false;
-          } else {
-            this.response_text = response;
-          }
-        }, error => {
-          alert(error);
-          this.response_text = <any>error;
-          this.spinner = false;
-          this.status = false;
-          this.subs.unsubscribe();
-        });
-    }
+    this.subs = this._fileService.getStatus()
+      .subscribe(response => {
+        this.response_text = response;
+      }, error => {
+        alert(error);
+        this.response_text = <any>error;
+        this.spinner = false;
+        this.subs.unsubscribe();
+      });
   }
 
   retrieveAnswer(): void {
@@ -88,12 +78,10 @@ export class ResponseComponent implements OnInit {
         //   this.response_text += (ans.word + ' : ' + ans.score + '\n');
         // });
         this.spinner = false;
-        this.status = false;
         this.subs.unsubscribe();
       }, error => {
         this.response_text = <any>error;
         this.spinner = false;
-        this.status = false;
         this.subs.unsubscribe();
       });
   }
