@@ -3,6 +3,8 @@ import {Injectable} from '@angular/core';
 import {Headers, Http, RequestMethod, RequestOptionsArgs} from '@angular/http';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/operator/mergeMap';
 import 'aws-sdk/dist/aws-sdk';
 
 @Injectable()
@@ -65,10 +67,12 @@ export class FileService {
       method: RequestMethod.Post,
       headers: headers,
     };
-    alert('here');
 
-    return this._http.post(this._erudite_server + 'status', JSON.stringify({'status': 'status'}), JSON.stringify(options))
-      .map(response => response.json().status as string).catch(this.handleError);
+    return Observable.interval(500).mergeMap(() => this._http.get(this._erudite_server + 'status',
+      JSON.stringify(options))).map(res => res.json().status as string);
+
+    // return this._http.get(this._erudite_server + 'status', JSON.stringify(options))
+    //   .map(response => response.json().status as string).catch(this.handleError);
 
   }
 

@@ -9,6 +9,7 @@ import {FileService} from '../file.service';
 })
 export class ResponseComponent implements OnInit {
   response_text: string;
+  subs: any;
   answers: any;
   spinner: boolean;
   status: boolean;
@@ -26,6 +27,7 @@ export class ResponseComponent implements OnInit {
         this.updateStatus();
       }
     );
+
     this._fileService.componentMethodCalled$.subscribe(
       () => {
         this.answers = null;
@@ -55,24 +57,22 @@ export class ResponseComponent implements OnInit {
   }
 
   updateStatus(): void {
-    setInterval(function () {
-      if (this.status) {
-        this._fileService.getStatus()
-          .subscribe(response => {
-            alert(response);
-            if (response === 'false') {
-              this.status = false;
-            } else {
-              this.response_text = response;
-            }
-          }, error => {
-            alert(error);
-            this.response_text = <any>error;
-            this.spinner = false;
+    if (this.status) {
+      this.subs = this._fileService.getStatus()
+        .subscribe(response => {
+          if (response === 'false') {
             this.status = false;
-          });
-      }
-    }, 500);
+          } else {
+            this.response_text = response;
+          }
+        }, error => {
+          alert(error);
+          this.response_text = <any>error;
+          this.spinner = false;
+          this.status = false;
+          this.subs.unsubscribe();
+        });
+    }
   }
 
   retrieveAnswer(): void {
@@ -88,10 +88,13 @@ export class ResponseComponent implements OnInit {
         //   this.response_text += (ans.word + ' : ' + ans.score + '\n');
         // });
         this.spinner = false;
+        this.status = false;
+        this.subs.unsubscribe();
       }, error => {
         this.response_text = <any>error;
         this.spinner = false;
+        this.status = false;
+        this.subs.unsubscribe();
       });
-    this.status = false;
   }
 }
