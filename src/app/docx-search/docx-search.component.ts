@@ -35,7 +35,6 @@ export class DocxSearchComponent implements OnInit {
       alert('Please enter a question?')
     } else {
       event.preventDefault();
-      // console.log(dataset);
       this._qaService.callComponentMethod(this.query);
     }
   }
