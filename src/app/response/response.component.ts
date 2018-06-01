@@ -22,6 +22,7 @@ export class ResponseComponent implements OnInit {
     );
     this._qaService.componentMethodCalled$.subscribe(
       () => {
+        this.answers = null;
         this.updateStatus();
       }
     );
@@ -56,6 +57,7 @@ export class ResponseComponent implements OnInit {
   updateStatus(): void {
     this.subs = this._fileService.getStatus()
       .subscribe(response => {
+        document.getElementById('response-window').style.marginTop = '10%';
         this.response_text = response;
       }, error => {
         alert(error);
