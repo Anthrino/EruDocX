@@ -1,8 +1,8 @@
 // Λnדhгιnכ™
-import {Injectable} from '@angular/core';
-import {Headers, Http, RequestMethod, RequestOptionsArgs} from '@angular/http';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Headers, Http, RequestMethod, RequestOptionsArgs } from '@angular/http';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/mergeMap';
 import 'aws-sdk/dist/aws-sdk';
@@ -15,6 +15,7 @@ export class FileService {
   AWSService: any = this.window.AWS;
   private filename: string;
   private file: File;
+  private statup_interval = 500;
   private componentMethodCallSource = new Subject<any>();
 
   // Observable string streams
@@ -59,6 +60,10 @@ export class FileService {
       .map(response => response.text() as string, status => false).catch(this.handleError);
   }
 
+  resetInterval(val) {
+    this.statup_interval = val;
+  }
+
   getStatus(): Observable<string> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -68,7 +73,7 @@ export class FileService {
       headers: headers,
     };
 
-    return Observable.interval(500).mergeMap(() => this._http.post(this._erudite_server + 'status',
+    return Observable.interval(this.statup_interval).mergeMap(() => this._http.post(this._erudite_server + 'status',
       JSON.stringify(options))).map(res => res.json().status as string);
 
     // return this._http.get(this._erudite_server + 'status', JSON.stringify(options))
