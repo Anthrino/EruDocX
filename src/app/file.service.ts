@@ -74,7 +74,7 @@ export class FileService {
     };
 
     return Observable.interval(this.statup_interval).mergeMap(() => this._http.post(this._erudite_server + 'status',
-      JSON.stringify(options))).map(res => res.json().status as string);
+      JSON.stringify(options))).map(res => res.json() as string);
 
     // return this._http.get(this._erudite_server + 'status', JSON.stringify(options))
     //   .map(response => response.json().status as string).catch(this.handleError);
