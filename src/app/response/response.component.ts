@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {QAService} from '../qa.service';
-import {FileService} from '../file.service';
+import { Component, OnInit } from '@angular/core';
+import { QAService } from '../qa.service';
+import { FileService } from '../file.service';
 
 @Component({
   selector: 'app-response',
@@ -14,7 +14,7 @@ export class ResponseComponent implements OnInit {
   spinner: boolean;
 
   constructor(private _qaService: QAService, private _fileService: FileService) {
-    this.response_text = 'This is where the response will appear..';
+    this.response_text = 'Response Area';
     this._qaService.componentMethodCalled$.subscribe(
       () => {
         this.retrieveAnswer();
@@ -43,10 +43,10 @@ export class ResponseComponent implements OnInit {
     this.spinner = true;
     this.response_text = this._fileService.uploadFile()
       .subscribe(response => {
-          document.getElementById('response-window').style.marginTop = '10%';
-          this.response_text = response;
-          this.spinner = false;
-        }
+        document.getElementById('response-window').style.marginTop = '10%';
+        this.response_text = response;
+        this.spinner = false;
+      }
         , error => {
           this.response_text = <any>error;
           this.spinner = false;
@@ -57,8 +57,19 @@ export class ResponseComponent implements OnInit {
   updateStatus(): void {
     this.subs = this._fileService.getStatus()
       .subscribe(response => {
-        document.getElementById('response-window').style.marginTop = '10%';
-        this.response_text = response;
+        if (response['answers']) {
+          document.getElementById('response-window').style.marginTop = '3%';
+          this.spinner = false;
+          this._fileService.resetInterval(3000);
+        }
+        else {
+          this.spinner = true;
+          document.getElementById('response-window').style.marginTop = '10%';
+          this._fileService.resetInterval(500);          
+        }
+        // var resp = JSON.parse(response);
+        this.response_text = response['val'];
+        this.answers = response['answers'];
       }, error => {
         alert(error);
         this.response_text = <any>error;
